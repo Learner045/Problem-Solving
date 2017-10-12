@@ -1,0 +1,26 @@
+class Solution {
+    public int reverse(int x) {
+        if(x<0){
+            //negative
+            x=-x;
+            StringBuilder sb=new StringBuilder(x+"");
+            sb.reverse();
+            
+            try{
+                return -Integer.parseInt(sb.toString());
+            }catch(Exception e){
+                return 0;
+            }
+            
+        }else{
+            StringBuilder sb=new StringBuilder(x+"");
+            sb.reverse();
+             try{
+                return Integer.parseInt(sb.toString());
+            }catch(Exception e){
+                return 0;
+            }
+            
+        }
+    }
+}
