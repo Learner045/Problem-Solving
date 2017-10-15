@@ -1,0 +1,43 @@
+class Solution {
+    public String convert(String s, int numRows) {
+        
+        if(s.equals("")||s.equals(" "))return s;
+        if(numRows==1)return s;
+        
+        
+        //create stringbuilders as many as numRows
+        //go from 1 to last stringbuilder then start dec and then agn inc when u rch 1st
+        ArrayList<StringBuilder>list=new ArrayList<>(numRows);
+        StringBuffer sbuff=new StringBuffer();
+        for(int i=0;i<numRows;i++){
+            list.add(new StringBuilder());
+        }
+        int inc=0;// 0 1 2 1 0 1 2
+       boolean up=false;boolean start=true;
+       for(char c:s.toCharArray()){
+           StringBuilder sb=list.get(inc);
+           sb.append(c);
+           if(up && !start){
+               //dec
+               inc--;
+               if(inc==0){
+                   up=false;
+               }
+           }else{
+               inc++;start=false;
+               if(inc==(numRows-1))
+               {
+                   up=true;
+               }
+           }
+            
+       }
+        for(int k=0;k<numRows;k++)
+        {
+            StringBuilder sb=list.get(k);
+            sbuff.append(sb.toString());
+        }
+        
+        return sbuff.toString();
+    }
+}
