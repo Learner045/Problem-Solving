@@ -1,0 +1,25 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        
+       List<String>result=new ArrayList<>();
+    
+        String s="";
+        BackTrack(s,result,0,0,n);
+        return result;
+    }
+        public void BackTrack(String x,List<String> result,int open,int close,int max){
+            
+            if(x.length()==max*2){
+                result.add(x);return;
+            }else{
+            if(open<max){
+                BackTrack(x+"(",result,open+1,close,max);
+            }
+            if(close<open){ // vimp condition 
+                BackTrack(x+")",result,open,close+1,max);
+            }
+            }
+            
+            
+        }
+}
