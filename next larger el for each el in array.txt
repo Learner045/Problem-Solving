@@ -1,0 +1,38 @@
+find next greatest el for each el in array & return resulting array
+
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        
+        //input 1,2,1
+        //output 2,-1,2
+        int len=nums.length;
+        if(len==1)return new int[]{-1};
+        if(len==0)return new int[]{};
+        int result[]=new int[nums.length];
+        for(int i=0;i<nums.length-1;i++){
+            int start=i+1;
+            while(nums[i]>=nums[start] && start!=i){
+                start=(start+1)%len;
+            }
+            //start==i or found a greater el
+            if(start==i){
+                result[i]=-1;
+            }else{
+                result[i]=nums[start];
+            }
+        }
+        boolean last=false;
+        for(int i=0;i<len-1;i++){
+            if(nums[len-1]<nums[i]){
+                result[len-1]=nums[i];
+                last=true;
+                break;
+            }
+        }
+        if(!last){
+             result[len-1]=-1;
+        }
+        
+        return result;
+    }
+}
